@@ -1,37 +1,31 @@
-import React from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-class App extends React.Component {
+export default class App extends Component {
   constructor() {
-    console.log("Fuck Fuck");
+    super();
+    console.log("constructor");
   }
 
   state = {
+    isLoading: true,
     count: 0,
   };
 
-  add = () => {
-    this.setState((current) => ({ count: current.count + 1 }));
-  };
-
-  minus = () => {
-    this.setState((current) => ({ count: current.count - 1 }));
-  };
   componentDidMount() {
+    console.log("componentDidMount");
     setTimeout(() => {
-      this.setState({ isLoading: false });
-    }, 6000);
+      this.setState((current) => ({ isLoading: false }));
+    }, 3000);
   }
-  componentDidUpdate() {
 
-  }
-  componentWillUnmount() {
+  componentDidUpdate(prevProps, prevState) {}
 
-  }
   render() {
     const { isLoading } = this.state;
-    return <div>{isLoading ? "Loading..." : "We are ready"}</div>;
+    {
+      console.log("Render");
+    }
+    return <div> {isLoading ? "Loading" : "Done..."} </div>;
   }
 }
-
-export default App;
